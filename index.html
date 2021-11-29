@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability assesment</title>
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #2b2e38;
+            font-family: Arial, sans-serif, helvetica;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .vulnerability-assesment {
+            display: block;
+            margin: 2em auto;
+            padding: 3px;
+            width: 100%;
+            text-align: center;
+        }
+        .info-card {
+            background-color: #15161b;
+            display: inline-block;
+            width: 25%;
+            padding: 20px;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            text-align: left !important;
+        }
+        .big--card {
+            width: 100% !important;
+        }
+        .info-card .info-card--title {
+            position: relative;
+            top: -26px;
+            text-transform: uppercase;
+            font-size: 10pt;
+            text-align: left;
+        }
+        .info-card .info-card--content {text-align: center;margin-bottom: 5px;text-transform: uppercase;font-size: 13pt;font-weight: bold;}
+        .info-card.vulnerability--level .info-card--content .indicator {
+            width: 11px;
+            height: 11px;
+            display: inline-block;
+            border-radius: 200px;
+            margin-right: 5px;
+        }
+        .info-card.vulnerability--level .info-card--content .indicator.critical,
+        .info-card.vulnerability--level .info-card--content .indicator.hard {
+            background-color: #f44336;
+        }
+        .info-card.vulnerability--level .info-card--content .indicator.medium {
+            background-color: #ff9800;
+        }
+        .info-card.vulnerability--level .info-card--content .indicator.low {
+            background-color: #009688;
+        }
+        .info-card.big--card .info-card--content {
+            font-weight: 300;
+            text-transform: unset;
+            text-align: left;
+            font-size: 12pt;
+        }
+        .info-card.big--card .info-card--content p {
+            margin-bottom: 1rem;
+        }
+        .info-card.endpoint .info-card--content {
+            text-transform: lowercase !important;
+        }
+    </style>
+    <div class="vulnerability-assesment">
+        <div class="project--name info-card">
+            <div class="info-card--title">
+                Project name
+            </div>
+            <div class="info-card--content">
+                narukoshin.me
+            </div>
+        </div>
+        <div class="vulnerability--level info-card">
+            <div class="info-card--title">
+                Severity level
+            </div>
+            <div class="info-card--content">
+                <div class="indicator critical"></div>
+                <span>Critical</span>
+            </div>
+        </div>
+        <div class="vulnerability--name info-card">
+            <div class="info-card--title">
+                Vulnerability name
+            </div>
+            <div class="info-card--content">
+                SQL Injection
+            </div>
+        </div>
+        <div class="assesment-created info-card">
+            <div class="info-card--title">
+                Creation date
+            </div>
+            <div class="info-card--content">
+                29/11/2021 18:56
+            </div>
+        </div>
+        <div class="assesment-updated info-card">
+            <div class="info-card--title">
+                Last update date
+            </div>
+            <div class="info-card--content">
+                29/11/2021 20:30
+            </div>
+        </div>
+        <div class="endpoint info-card">
+            <div class="info-card--title">
+                Endpoint
+            </div>
+            <div class="info-card--content">
+                /userid.php/?id=5
+            </div>
+        </div>
+        <div class="vulnerability--description info-card big--card">
+            <div class="info-card--title">
+                Description
+            </div>
+            <div class="info-card--content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>At the beginning, this is my hello world text to check if everything works fine.</p>
+            </div>
+        </div>
+        <div class="vulnerability--solution info-card big--card">
+            <div class="info-card--title">
+                Solution
+            </div>
+            <div class="info-card--content">
+                <p>The code below is the secure way to access a database and get some information from it.</p>
+                <p>Some piece of code: <pre><code>    require_once "includes/config.php";
+    $db     = new PDO(sprintf("host:%s;dbname:%s", $host, $dbname), $username, $password);
+    $stmt   = $db->prepare("SELECT id FROM users WHERE username = ? LIMIT 1");
+    $result = $stmt->execute([$username]);
+    if ($result){
+        if (!$stmt->rowCount()) return throw new Exception("User is not found");
+    } else return throw new Exception("Database query failed");
+                    </code></pre>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
